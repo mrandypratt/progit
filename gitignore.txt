@@ -1,0 +1,91 @@
+# will ignore all text files recursively
+echo "*.txt" >> .gitignore
+git add .
+git status -s
+*.txt
+
+# will ignore all text files in root directory
+#/*.txt
+echo "/*.txt" >> .gitignore
+git add .
+git status -s
+
+# will ignore all directories called dir2
+#dir2/
+echo "dir2" >> .gitignore
+git add .
+git status -s
+
+echo "dir2/" >> .gitignore
+git add .
+git status -s
+
+# will ignore only the files in dir2
+#/dir2/
+
+mkdir other_dir other_dir/dir1
+echo "Some Text" >> other_dir/dir1/file1.txt
+echo "Some JavaScript" >> other_dir/dir1/file1.js
+echo "/dir1" >> .gitignore
+git add .
+git status -s
+
+
+
+# will track only file1.txt
+#*
+#!file1.txt
+
+echo "*" >> .gitignore
+echo '!./**/*.txt' >> .gitignore
+git add .
+git status -s
+
+
+# Will ignore dir3
+#dir1/**/*.txt
+
+echo "/dir1/**/*.txt" >> .gitignore
+git add .
+git status -s
+
+# nested Git
+echo "/dir1/**/*.txt" >> .gitignore
+git add .
+git status -s
+
+echo '!*.txt' >> dir1/.gitignore
+git add .
+git status -s
+
+
+
+# git rm --cached -rf \* .gitignore && rm .gitignore
+
+mkdir git_practice && cd git_practice
+git init
+echo "Some Text" >> root.txt
+git diff
+git diff --staged
+
+git add root.txt
+git diff
+git diff --staged
+
+git commit -m "Initial Commit"
+git diff
+git diff --staged
+
+echo "More Text" >> root.txt
+echo "Some JavaScript" >> root.js
+git diff
+git diff --staged
+
+git add .
+git diff
+git diff --staged
+
+
+echo "More JavaScript" >> root.js
+git diff
+git diff --staged
